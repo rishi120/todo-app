@@ -5,9 +5,22 @@ const data = createContext();
 
 function Mastercomponent() {
     const inputFocus = useRef();
+    const [searchTerm, setSearchTerm] = useState('');
+    const [errorMessage, setErrorMessage] = useState(false);
 
     const handleInput = (event) => {
-        console.log(event.target.value);
+        const searchKeyWord = event.target.value;
+        setSearchTerm(searchKeyWord);
+        setErrorMessage(false);
+    }
+
+    const handleTask = () => {
+        if (searchTerm === '') {
+            setErrorMessage(true);
+            setTimeout(() => {
+                inputFocus.current.focus();
+            }, 300);
+        }
     }
 
     useEffect(() => {
@@ -19,7 +32,10 @@ function Mastercomponent() {
 
     const inputComponentValues = {
         inputFocus,
-        handleInput
+        handleInput,
+        searchTerm,
+        handleTask,
+        errorMessage
     }
 
     return (

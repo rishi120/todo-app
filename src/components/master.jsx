@@ -9,6 +9,8 @@ function Mastercomponent() {
     const [errorMessage, setErrorMessage] = useState(false);
     const [tasks, setTasks] = useState([]);
 
+    const cloneOriginalArray = [...tasks];
+
     const handleInput = (event) => {
         const searchKeyWord = event.target.value;
         setSearchTerm(searchKeyWord);
@@ -43,12 +45,16 @@ function Mastercomponent() {
         errorMessage
     }
 
+    const handleTaskDelete = (newtasks) => {
+        setTasks([...cloneOriginalArray].filter((data) => data.searchTerm !== newtasks.searchTerm))
+    }
+
     return (
         <section className='p-4'>
             <h1 className=' pb-3 font-sans text-2xl font-semibold'>A simple Todo App</h1>
             <hr />
             <data.Provider value={inputComponentValues}>
-                <Todo tasks={tasks} />
+                <Todo tasks={tasks} handleTaskDelete={handleTaskDelete} />
             </data.Provider>
         </section>
     )

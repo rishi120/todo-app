@@ -27,6 +27,10 @@ function Mastercomponent() {
         else {
             const newTodos = [...tasks, { searchTerm }];
             setTasks(newTodos);
+            setSearchTerm('');
+            setTimeout(() => {
+                inputFocus.current.focus();
+            }, 300);
         }
     }
 
@@ -36,6 +40,7 @@ function Mastercomponent() {
         }, 300);
 
     }, [])
+
 
     const inputComponentValues = {
         inputFocus,

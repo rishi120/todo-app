@@ -52,6 +52,9 @@ function Mastercomponent() {
 
     const handleTaskDelete = (newtasks) => {
         setTasks([...cloneOriginalArray].filter((data) => data.searchTerm !== newtasks.searchTerm))
+        setTimeout(() => {
+            inputFocus.current.focus();
+        }, 300);
     }
 
     return (

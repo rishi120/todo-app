@@ -7,6 +7,7 @@ function Mastercomponent() {
     const inputFocus = useRef();
     const [searchTerm, setSearchTerm] = useState('');
     const [errorMessage, setErrorMessage] = useState(false);
+    const [tasks, setTasks] = useState([]);
 
     const handleInput = (event) => {
         const searchKeyWord = event.target.value;
@@ -20,6 +21,10 @@ function Mastercomponent() {
             setTimeout(() => {
                 inputFocus.current.focus();
             }, 300);
+        }
+        else {
+            const newTodos = [...tasks, { searchTerm }];
+            setTasks(newTodos);
         }
     }
 
@@ -43,7 +48,7 @@ function Mastercomponent() {
             <h1 className=' pb-3 font-sans text-2xl font-semibold'>A simple Todo App</h1>
             <hr />
             <data.Provider value={inputComponentValues}>
-                <Todo />
+                <Todo tasks={tasks} />
             </data.Provider>
         </section>
     )

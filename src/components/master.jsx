@@ -26,7 +26,7 @@ function Mastercomponent() {
             }, 300);
         }
         else {
-            const newTodos = [...tasks, { searchTerm }];
+            const newTodos = [...tasks, { searchTerm, taskComplete }];
             setTasks(newTodos);
             setSearchTerm('');
             setTimeout(() => {
@@ -59,7 +59,6 @@ function Mastercomponent() {
     }
 
     const handleTaskComplete = (index) => {
-        console.log(index, "index");
         setTaskComplete({
             ...taskComplete,
             [index]: !taskComplete[index]

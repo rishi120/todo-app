@@ -2,15 +2,7 @@ import React from 'react'
 import Addtask from "./task";
 
 const Todo = ({ tasks, handleTaskDelete, handleTaskComplete, taskComplete }) => {
-    console.log(taskComplete, "taskComplete");
-    const renderStyleBasedOnCondition = () => {
-        if (Object.values(taskComplete).every((v) => v === false)) {
-            return "none"
-        } else {
-            return "line-through"
-        }
-    }
-
+    console.log(tasks, "tasks");
     return (
         <div>
             <Addtask />
@@ -20,7 +12,7 @@ const Todo = ({ tasks, handleTaskDelete, handleTaskComplete, taskComplete }) => 
                     {tasks.map((newtasks, index) => {
                         return (
                             <>
-                                <li key={index} className=" capitalize list-disc py-4 flex items-center w-[100%] relative" style={{ textDecoration: renderStyleBasedOnCondition() }}>
+                                <li key={index} className=" capitalize list-disc py-4 flex items-center w-[100%] relative" style={taskComplete[index] ? { textDecoration: "line-through" } : { textDecoration: "none" }}>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 mr-2 cursor-pointer" onClick={() => handleTaskComplete(index)}>
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>

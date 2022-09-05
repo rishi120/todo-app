@@ -8,6 +8,7 @@ function Mastercomponent() {
     const [searchTerm, setSearchTerm] = useState('');
     const [errorMessage, setErrorMessage] = useState(false);
     const [tasks, setTasks] = useState([]);
+    const [taskComplete, setTaskComplete] = useState(false);
 
     const cloneOriginalArray = [...tasks];
 
@@ -57,12 +58,20 @@ function Mastercomponent() {
         }, 300);
     }
 
+    const handleTaskComplete = (index) => {
+        console.log(index, "index");
+        setTaskComplete({
+            ...taskComplete,
+            [index]: !taskComplete[index]
+        })
+    }
+
     return (
         <section className='p-4'>
-            <h1 className=' pb-3 font-sans text-2xl font-semibold'>A simple Todo App</h1>
+            <h1 className=' pb-3 font-sans text-2xl font-semibold'>A Simple Todo App</h1>
             <hr />
             <data.Provider value={inputComponentValues}>
-                <Todo tasks={tasks} handleTaskDelete={handleTaskDelete} />
+                <Todo tasks={tasks} handleTaskDelete={handleTaskDelete} handleTaskComplete={handleTaskComplete} taskComplete={taskComplete} />
             </data.Provider>
         </section>
     )

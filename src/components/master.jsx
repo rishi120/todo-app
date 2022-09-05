@@ -9,6 +9,7 @@ function Mastercomponent() {
     const [errorMessage, setErrorMessage] = useState(false);
     const [tasks, setTasks] = useState([]);
     const [taskComplete, setTaskComplete] = useState(false);
+    const [activeColor, setActiveColor] = useState(false);
 
     const cloneOriginalArray = [...tasks];
 
@@ -62,6 +63,10 @@ function Mastercomponent() {
         setTaskComplete({
             ...taskComplete,
             [index]: !taskComplete[index]
+        });
+        setActiveColor({
+            ...activeColor,
+            [index]: !activeColor[index]
         })
     }
 
@@ -70,7 +75,7 @@ function Mastercomponent() {
             <h1 className=' pb-3 font-sans text-2xl font-semibold'>A Simple Todo App</h1>
             <hr />
             <data.Provider value={inputComponentValues}>
-                <Todo tasks={tasks} handleTaskDelete={handleTaskDelete} handleTaskComplete={handleTaskComplete} taskComplete={taskComplete} />
+                <Todo tasks={tasks} handleTaskDelete={handleTaskDelete} handleTaskComplete={handleTaskComplete} taskComplete={taskComplete} activeColor={activeColor} />
             </data.Provider>
         </section>
     )

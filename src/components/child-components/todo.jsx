@@ -1,12 +1,12 @@
 import React from 'react'
 import Addtask from "./task";
 
-const Todo = ({ tasks, handleTaskDelete, handleTaskComplete, taskComplete, activeColor, storeCurrentDateAndTime }) => {
+const Todo = ({ tasks, handleTaskDelete, handleTaskComplete, taskComplete, activeColor, storeCurrentDateAndTime, handleDeleteAll }) => {
 
     return (
         <div>
             <Addtask />
-            <div className=' lg:w-[500px] m-auto h-[380px] relative border-[1px] rounded-md mt-7'>
+            <div className=' lg:w-[500px] m-auto h-[350px] relative border-[1px] rounded-md mt-7'>
                 <ul className=' lg:w-[500px] m-auto p-6 h-[350px] overflow-y-auto relative'>
                     <li className=' flex justify-between'><h1 className='pb-2 text-blue-800 font-semibold'>Tasks ({tasks.length})</h1> <p className=' text-[10px] text-blue-800 flex items-center'>{storeCurrentDateAndTime}</p></li>
                     {tasks.map((newtasks, index) => {
@@ -26,10 +26,8 @@ const Todo = ({ tasks, handleTaskDelete, handleTaskComplete, taskComplete, activ
                         )
                     })}
                 </ul>
-                <div className=' flex justify-around absolute w-[100%] bottom-3 bg-white border-t-[1px] py-1'>
-                    <button type='button' className='lg:w-24 bg-transparent p-2 text-blue-800 font-mono text-sm border-b-2'>All</button>
-                    <button type='button' className='lg:w-24 bg-transparent p-2 text-blue-800 font-mono text-sm border-b-2'>Active</button>
-                    <button type='button' className='lg:w-24 bg-transparent p-2 text-blue-800  font-mono text-sm border-b-2'>Completed</button>
+                <div className=' flex justify-around absolute w-[100%] bottom-1 bg-white border-t-[1px] py-1'>
+                    <button type='button' className='lg:w-24 bg-blue-800 p-2 text-white rounded-lg font-mono text-sm mt-2' onClick={() => handleDeleteAll(tasks)}>Clear All</button>
                 </div>
             </div>
         </div>

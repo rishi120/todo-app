@@ -37,6 +37,17 @@ function Mastercomponent() {
         setErrorMessage(false);
     }
 
+    const handleTaskComplete = (index) => {
+        setTaskComplete({
+            ...taskComplete,
+            [index]: !taskComplete[index]
+        });
+        setActiveColor({
+            ...activeColor,
+            [index]: !activeColor[index]
+        })
+    }
+
     const handleTask = () => {
         if (searchTerm === '') {
             setErrorMessage(true);
@@ -77,15 +88,12 @@ function Mastercomponent() {
         }, 300);
     }
 
-    const handleTaskComplete = (index) => {
-        setTaskComplete({
-            ...taskComplete,
-            [index]: !taskComplete[index]
+    const handleDeleteAll = (task) => {
+        let copyOfOriginalArray = [...tasks];
+        task.forEach((data) => {
+            copyOfOriginalArray = [...copyOfOriginalArray].filter((filteredData) => filteredData.searchTerm !== data.searchTerm);
         });
-        setActiveColor({
-            ...activeColor,
-            [index]: !activeColor[index]
-        })
+        setTasks(copyOfOriginalArray);
     }
 
     return (
@@ -93,7 +101,7 @@ function Mastercomponent() {
             <h1 className=' pb-3 font-sans text-2xl font-semibold'>A Simple Todo App</h1>
             <hr />
             <data.Provider value={inputComponentValues}>
-                <Todo tasks={tasks} handleTaskDelete={handleTaskDelete} handleTaskComplete={handleTaskComplete} taskComplete={taskComplete} activeColor={activeColor} storeCurrentDateAndTime={storeCurrentDateAndTime} />
+                <Todo tasks={tasks} handleTaskDelete={handleTaskDelete} handleTaskComplete={handleTaskComplete} taskComplete={taskComplete} activeColor={activeColor} storeCurrentDateAndTime={storeCurrentDateAndTime} handleDeleteAll={handleDeleteAll} />
             </data.Provider>
         </section>
     )

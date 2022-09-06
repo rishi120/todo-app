@@ -6,15 +6,15 @@ const Todo = ({ tasks, handleTaskDelete, handleTaskComplete, taskComplete, activ
     return (
         <div>
             <Addtask />
-            <div className=' lg:w-[500px] m-auto h-[350px] relative border-[1px] rounded-md mt-7'>
-                <ul className=' lg:w-[500px] m-auto p-6 h-[350px] overflow-y-auto relative'>
+            <div className=' lg:w-[500px] m-auto h-[380px] relative border-[1px] rounded-md mt-7'>
+                <ul className=' lg:w-[500px] m-auto p-6 h-[320px] overflow-y-auto relative overflow-x-hidden'>
                     <li className=' flex justify-between'><h1 className='pb-2 text-blue-800 font-semibold'>Tasks ({tasks.length})</h1> <p className=' text-[10px] text-blue-800 flex items-center'>{storeCurrentDateAndTime}</p></li>
                     {tasks.map((newtasks, index) => {
                         return (
                             <>
                                 <li key={index} className=" capitalize list-disc pt-4 pb-1 flex items-center w-[100%] relative" style={taskComplete[index] ? { textDecoration: "line-through" } : { textDecoration: "none" }}>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 mr-2 cursor-pointer" onClick={() => handleTaskComplete(index)}>
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" style={activeColor[index] ? { color: "#f00" } : { color: "#000" }} />
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" style={activeColor[index] ? { color: "#f00", transition: "0.2s ease" } : { color: "#000", transition: "0.2s ease" }} />
                                     </svg>
                                     {newtasks.searchTerm}
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 absolute right-0 cursor-pointer" onClick={() => handleTaskDelete(newtasks)}>

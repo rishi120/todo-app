@@ -1,5 +1,6 @@
 import React, { useState, useEffect, createContext, useRef } from 'react'
 import Todo from "./child-components/todo";
+import moment from 'moment';
 
 const data = createContext();
 
@@ -10,6 +11,23 @@ function Mastercomponent() {
     const [tasks, setTasks] = useState([]);
     const [taskComplete, setTaskComplete] = useState(false);
     const [activeColor, setActiveColor] = useState(false);
+    const [storeCurrentDateAndTime, setStoreCurrentDateAndTime] = useState("");
+
+    // function to render the current date and time with auto update.
+    function updateDateAndTime() {
+        const date = new Date();
+        date.getHours();
+        date.getMinutes();
+        date.getSeconds();
+        const formatDataAndTime = "DD-MMM-YYYY h:mm:ss A";
+        const getDateAndTime = moment(date).format(formatDataAndTime);
+        return getDateAndTime;
+    }
+    useEffect(() => {
+        setInterval(() => {
+            setStoreCurrentDateAndTime(updateDateAndTime());
+        }, 1000);
+    }, [storeCurrentDateAndTime]);
 
     const cloneOriginalArray = [...tasks];
 
@@ -75,7 +93,7 @@ function Mastercomponent() {
             <h1 className=' pb-3 font-sans text-2xl font-semibold'>A Simple Todo App</h1>
             <hr />
             <data.Provider value={inputComponentValues}>
-                <Todo tasks={tasks} handleTaskDelete={handleTaskDelete} handleTaskComplete={handleTaskComplete} taskComplete={taskComplete} activeColor={activeColor} />
+                <Todo tasks={tasks} handleTaskDelete={handleTaskDelete} handleTaskComplete={handleTaskComplete} taskComplete={taskComplete} activeColor={activeColor} storeCurrentDateAndTime={storeCurrentDateAndTime} />
             </data.Provider>
         </section>
     )

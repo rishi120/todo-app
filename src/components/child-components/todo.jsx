@@ -1,20 +1,14 @@
 import React from 'react'
 import Addtask from "./task";
-import moment from 'moment';
 
-const Todo = ({ tasks, handleTaskDelete, handleTaskComplete, taskComplete, activeColor }) => {
-    const formatDataAndTime = "DD-MMM-YYYY h:mm A";
-    const date = new Date();
-    date.getHours();
-    date.getMinutes();
-    date.getSeconds();
-    const getFullData = moment(date).format(formatDataAndTime);
+const Todo = ({ tasks, handleTaskDelete, handleTaskComplete, taskComplete, activeColor, storeCurrentDateAndTime }) => {
+
     return (
         <div>
             <Addtask />
             <div className=' lg:w-[500px] m-auto h-[380px] relative border-[1px] rounded-md mt-7'>
                 <ul className=' lg:w-[500px] m-auto p-6 h-[350px] overflow-y-auto relative'>
-                    <li className=' flex justify-between'><h1 className='pb-2 text-blue-800 font-semibold'>Tasks ({tasks.length})</h1> <p className=' text-[10px] text-blue-800'>{getFullData}</p></li>
+                    <li className=' flex justify-between'><h1 className='pb-2 text-blue-800 font-semibold'>Tasks ({tasks.length})</h1> <p className=' text-[10px] text-blue-800 flex items-center'>{storeCurrentDateAndTime}</p></li>
                     {tasks.map((newtasks, index) => {
                         return (
                             <>

@@ -12,6 +12,7 @@ function Mastercomponent() {
     const [taskComplete, setTaskComplete] = useState(false);
     const [activeColor, setActiveColor] = useState(false);
     const [storeCurrentDateAndTime, setStoreCurrentDateAndTime] = useState("");
+    
 
     // function to render the current date and time with auto update.
     function updateDateAndTime() {

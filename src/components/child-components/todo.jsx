@@ -6,9 +6,9 @@ const Todo = ({ tasks, handleTaskDelete, handleTaskComplete, taskComplete, activ
     return (
         <div>
             <Addtask />
-            <div className=' lg:w-[500px] m-auto h-[380px] relative border-[1px] rounded-md mt-7'>
-                <ul className=' lg:w-[500px] m-auto p-6 h-[320px] overflow-y-auto relative overflow-x-hidden'>
-                    <li className=' flex justify-between'><h1 className='pb-2 text-blue-800 font-semibold'>Tasks ({tasks.length})</h1> <p className=' text-[10px] text-blue-800 flex items-center'>{storeCurrentDateAndTime}</p></li>
+            <div className=' lg:w-[500px] m-auto h-[380px] relative border-[1px] rounded-xl mt-7 shadow'>
+                <ul className=' lg:w-[500px] m-auto p-6 h-[320px] overflow-y-auto relative overflow-x-hidden scrollbar-thin scrollbar-thumb-blue-600 scrollbar-track-gray-300'>
+                    <li className=' flex justify-between'><h1 className='pb-2 text-blue-800 font-semibold'>My Tasks ({tasks.length})</h1> <p className=' text-[10px] text-blue-800 flex items-center'>{storeCurrentDateAndTime}</p></li>
                     {tasks.map((newtasks, index) => {
                         return (
                             <>
@@ -26,6 +26,7 @@ const Todo = ({ tasks, handleTaskDelete, handleTaskComplete, taskComplete, activ
                         )
                     })}
                 </ul>
+               
                 <div className=' flex justify-around absolute w-[100%] bottom-1 bg-white border-t-[1px] py-1'>
                     <button type='button' className='lg:w-24 bg-blue-800 p-2 text-white rounded-lg font-mono text-sm mt-2' onClick={() => handleDeleteAll(tasks)}>Clear All</button>
                 </div>

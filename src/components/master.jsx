@@ -20,7 +20,7 @@ function Mastercomponent() {
         date.getHours();
         date.getMinutes();
         date.getSeconds();
-        const formatDataAndTime = "DD-MMM-YYYY h:mm:ss A";
+        const formatDataAndTime = "DD-MMM-YYYY h:mm A";
         const getDateAndTime = moment(date).format(formatDataAndTime);
         return getDateAndTime;
     }
